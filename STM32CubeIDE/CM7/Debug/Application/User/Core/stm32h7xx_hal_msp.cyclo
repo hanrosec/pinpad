@@ -1,0 +1,15 @@
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:67:6:HAL_MspInit	1
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:91:6:HAL_CRC_MspInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:113:6:HAL_CRC_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:135:6:HAL_DMA2D_MspInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:160:6:HAL_DMA2D_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:185:6:HAL_DSI_MspInit	3
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:240:6:HAL_DSI_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:276:6:HAL_JPEG_MspInit	6
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:359:6:HAL_JPEG_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:388:6:HAL_LTDC_MspInit	3
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:431:6:HAL_LTDC_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:456:6:HAL_QSPI_MspInit	3
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:557:6:HAL_QSPI_MspDeInit	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:749:6:HAL_SDRAM_MspInit	3
+D:/touchgfx_projects/pinpad/CM7/Core/Src/stm32h7xx_hal_msp.c:860:6:HAL_SDRAM_MspDeInit	2

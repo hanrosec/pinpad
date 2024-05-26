@@ -1,0 +1,5 @@
+D:/touchgfx_projects/pinpad/CM7/Core/Src/main.c:786:13:TouchGFX_Task	1
+D:/touchgfx_projects/pinpad/CM7/Core/Src/main.c:248:6:SystemClock_Config	4
+D:/touchgfx_projects/pinpad/CM7/Core/Src/main.c:113:5:main	28
+D:/touchgfx_projects/pinpad/CM7/Core/Src/main.c:878:6:HAL_TIM_PeriodElapsedCallback	2
+D:/touchgfx_projects/pinpad/CM7/Core/Src/main.c:895:6:Error_Handler	1
