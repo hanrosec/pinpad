@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
+//#include <time.h>
 
 class Screen1View : public Screen1ViewBase
 {
@@ -22,19 +23,10 @@ public:
 private:
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
-//    touchgfx::ButtonWithLabel button1;
-//    touchgfx::ButtonWithLabel button2;
-//    touchgfx::ButtonWithLabel button3;
-//    touchgfx::ButtonWithLabel button4;
-//    touchgfx::ButtonWithLabel button5;
-//    touchgfx::ButtonWithLabel button6;
-//    touchgfx::ButtonWithLabel button7;
-//    touchgfx::ButtonWithLabel button8;
-//    touchgfx::ButtonWithLabel button9;
-
     touchgfx::Callback<Screen1View, const touchgfx::AbstractButton&> buttonCallback;
     void shuffleButtons();
-    std::vector<ButtonWithLabel*> buttons;
+//    std::vector<ButtonWithLabel*> buttons;
+    ButtonWithLabel *buttons[9];
 };
 
 template<typename T>

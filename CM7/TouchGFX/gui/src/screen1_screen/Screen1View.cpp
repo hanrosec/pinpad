@@ -12,7 +12,7 @@ Screen1View::Screen1View():
 	const int startY = 0;
 	const int buttonA = 100;
 
-	std::vector<ButtonWithLabel*> buttons;
+//	std::vector<ButtonWithLabel*> buttons;
     std::vector<TEXTS> number_list = {T_NINE, T_EIGHT, T_SEVEN, T_SIX, T_FIVE, T_FOUR, T_THREE, T_TWO, T_ONE};
     std::vector<TEXTS> shuffled_numbers;
     shuffle(number_list, shuffled_numbers);
@@ -26,13 +26,14 @@ Screen1View::Screen1View():
 			ButtonWithLabel* button = new ButtonWithLabel();
 			button->setXY(buttonX, buttonY);
 			button->setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_SMALL_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_SMALL_FILL_PRESSED_ID));
-			button->setLabelText(touchgfx::TypedText(shuffled_numbers[counter++]));
+			button->setLabelText(touchgfx::TypedText(shuffled_numbers[counter]));
 			button->setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
 			button->setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
 			button->setAction(buttonCallback);
 			add(*button);
 
-			buttons.push_back(button);
+			buttons[counter] = button;
+			counter++;
 		}
 	}
 }
