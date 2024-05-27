@@ -6,16 +6,15 @@
 Screen1View::Screen1View():
 	buttonCallback(this, &Screen1View::buttonCallbackHandler)
 {
-	// TODO nie zmienia przycisków
+	srand(time(NULL));
+	RANDOM_NUMBER = rand();
 	const int buttonSpacing = 10;
 	const int startX = 0;
 	const int startY = 0;
 	const int buttonA = 100;
-
-//	std::vector<ButtonWithLabel*> buttons;
     std::vector<TEXTS> number_list = {T_NINE, T_EIGHT, T_SEVEN, T_SIX, T_FIVE, T_FOUR, T_THREE, T_TWO, T_ONE};
     std::vector<TEXTS> shuffled_numbers;
-    shuffle(number_list, shuffled_numbers);
+    shuffle(number_list, shuffled_numbers, RANDOM_NUMBER);
 
     int counter = 0;
 	for (int row = 0; row < 3; row++) {
@@ -51,37 +50,38 @@ void Screen1View::tearDownScreen()
 void Screen1View::shuffleButtons() {
     std::vector<TEXTS> number_list = {T_NINE, T_EIGHT, T_SEVEN, T_SIX, T_FIVE, T_FOUR, T_THREE, T_TWO, T_ONE};
     std::vector<TEXTS> shuffled_numbers;
-    shuffle(number_list, shuffled_numbers);
+    shuffle(number_list, shuffled_numbers, RANDOM_NUMBER);
     for(int i = 0; i<9; i++) {
     	buttons[i]->setLabelText(touchgfx::TypedText(shuffled_numbers[i]));
     }
 }
 
 void Screen1View::buttonCallbackHandler(const touchgfx::AbstractButton& src) {
+	// TODO wysyłać input przez USB https://wiki.stmicroelectronics.cn/stm32mcu/index.php?title=Introduction_to_USB_with_STM32&sfr=stm32mcu#USB_Device_Library_Overview
+    const ButtonWithLabel& button = static_cast<const ButtonWithLabel&>(src);
+    touchgfx::TypedText labelText = button.getLabelText();
+
+    const touchgfx::Unicode::UnicodeChar* unicodeText = labelText.getText();
+    int buttonPressed = touchgfx::Unicode::atoi(unicodeText);
+
     shuffleButtons();
 }
 
 void Screen1View::handleTickEvent()
 {
+	RANDOM_NUMBER = (unsigned int)((RANDOM_NUMBER ^ rand()) >> 16) & 0x7fff;
     for(int i = 0; i<9; i++) {
     	buttons[i]->invalidate();
     }
 }
 
-void swap(TEXTS& a, TEXTS& b) {
-    TEXTS temp = a;
-    a = b;
-    b = temp;
-}
-
-template<typename T>
-void shuffle(const std::vector<T>& input, std::vector<T>& output) {
+void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R) {
     output = input;
 
     int n = output.size();
     for (int i = n - 1; i > 0; --i) {
-        int rand_index = rand() % (i + 1);
-        T temp = output[i];
+        int rand_index = R % (i + 1);
+        TEXTS temp = output[i];
         output[i] = output[rand_index];
         output[rand_index] = temp;
     }

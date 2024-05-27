@@ -5,10 +5,14 @@
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/ButtonWithLabel.hpp>
 #include <texts/TextKeysAndLanguages.hpp>
+
 #include <stdlib.h>
 #include <vector>
 #include <algorithm>
-//#include <time.h>
+#include <time.h>
+#include <string.h>
+#include <touchgfx/Unicode.hpp>
+#include "usbd_cdc.h"
 
 class Screen1View : public Screen1ViewBase
 {
@@ -18,19 +22,16 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 
-//    void buttonCallback(const touchgfx::AbstractButton& src);
     virtual void handleTickEvent();
 private:
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
     touchgfx::Callback<Screen1View, const touchgfx::AbstractButton&> buttonCallback;
     void shuffleButtons();
-//    std::vector<ButtonWithLabel*> buttons;
     ButtonWithLabel *buttons[9];
+    int RANDOM_NUMBER;
 };
 
-template<typename T>
-void shuffle(const std::vector<T>& input, std::vector<T>& output);
-void swap(TEXTS& a, TEXTS& b);
+void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R);
 
 #endif // SCREEN1VIEW_HPP

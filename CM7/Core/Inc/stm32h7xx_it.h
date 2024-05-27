@@ -56,6 +56,7 @@ void DebugMon_Handler(void);
 void TIM6_DAC_IRQHandler(void);
 void LTDC_IRQHandler(void);
 void DMA2D_IRQHandler(void);
+void OTG_FS_IRQHandler(void);
 void JPEG_IRQHandler(void);
 void MDMA_IRQHandler(void);
 void DSI_IRQHandler(void);
