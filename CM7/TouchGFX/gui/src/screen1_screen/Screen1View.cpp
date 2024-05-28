@@ -7,7 +7,7 @@ Screen1View::Screen1View():
 	buttonCallback(this, &Screen1View::buttonCallbackHandler)
 {
 	srand(time(NULL));
-	RANDOM_NUMBER = rand();
+	RANDOM_NUMBER = rand(); // TODO use RNG
 	const int buttonSpacing = 10;
 	const int startX = 0;
 	const int startY = 0;
@@ -60,9 +60,12 @@ void Screen1View::buttonCallbackHandler(const touchgfx::AbstractButton& src) {
 	// TODO wysyłać input przez USB https://wiki.stmicroelectronics.cn/stm32mcu/index.php?title=Introduction_to_USB_with_STM32&sfr=stm32mcu#USB_Device_Library_Overview
     const ButtonWithLabel& button = static_cast<const ButtonWithLabel&>(src);
     touchgfx::TypedText labelText = button.getLabelText();
+//    extern UART_HandleTypeDef huart4;
 
     const touchgfx::Unicode::UnicodeChar* unicodeText = labelText.getText();
-    int buttonPressed = touchgfx::Unicode::atoi(unicodeText);
+    uint8_t buttonPressed = (uint8_t)touchgfx::Unicode::atoi(unicodeText);
+    uint8_t *pbuttonPressed = &buttonPressed;
+//    HAL_UART_Transmit_DMA(&huart4, pbuttonPressed, sizeof(buttonPressed));
 
     shuffleButtons();
 }

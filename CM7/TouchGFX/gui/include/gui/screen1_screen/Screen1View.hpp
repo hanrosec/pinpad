@@ -12,7 +12,8 @@
 #include <time.h>
 #include <string.h>
 #include <touchgfx/Unicode.hpp>
-#include "usbd_cdc.h"
+//#include "usbd_cdc_if.h"
+#include "main.h"
 
 class Screen1View : public Screen1ViewBase
 {
