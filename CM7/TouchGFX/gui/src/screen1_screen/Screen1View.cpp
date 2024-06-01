@@ -7,7 +7,15 @@ Screen1View::Screen1View():
 	buttonCallback(this, &Screen1View::buttonCallbackHandler)
 {
 	srand(time(NULL));
-	RANDOM_NUMBER = rand(); // TODO use RNG
+	RANDOM_NUMBER = rand();
+//	extern RNG_HandleTypeDef *hrng;
+//
+//
+//	if(HAL_RNG_GenerateRandomNumber_IT(hrng) != HAL_OK) {
+//		Error_Handler();
+//	}
+//	uint32_t TRANDOM_NUMBER = HAL_RNG_ReadLastRandomNumber(hrng);
+
 	const int buttonSpacing = 10;
 	const int startX = 0;
 	const int startY = 0;
@@ -57,21 +65,19 @@ void Screen1View::shuffleButtons() {
 }
 
 void Screen1View::buttonCallbackHandler(const touchgfx::AbstractButton& src) {
-	// TODO wysyłać input przez USB https://wiki.stmicroelectronics.cn/stm32mcu/index.php?title=Introduction_to_USB_with_STM32&sfr=stm32mcu#USB_Device_Library_Overview
+	extern UART_HandleTypeDef huart1;
     const ButtonWithLabel& button = static_cast<const ButtonWithLabel&>(src);
-    touchgfx::TypedText labelText = button.getLabelText();
-//    extern UART_HandleTypeDef huart4;
+    touchgfx::TypedText label_text = button.getLabelText();
 
-    const touchgfx::Unicode::UnicodeChar* unicodeText = labelText.getText();
-    uint8_t buttonPressed = (uint8_t)touchgfx::Unicode::atoi(unicodeText);
-    uint8_t *pbuttonPressed = &buttonPressed;
-//    HAL_UART_Transmit_DMA(&huart4, pbuttonPressed, sizeof(buttonPressed));
+    const touchgfx::Unicode::UnicodeChar* unicode_text = label_text.getText();
+    uint8_t button_pressed = (uint8_t)touchgfx::Unicode::atoi(unicode_text) + 48; // Wyrównanie do cyfr
+//    uint8_t *pbutton_pressed = ;
 
+    HAL_UART_Transmit(&huart1, &button_pressed, sizeof(button_pressed), 0xffffff);
     shuffleButtons();
 }
 
-void Screen1View::handleTickEvent()
-{
+void Screen1View::handleTickEvent() {
 	RANDOM_NUMBER = (unsigned int)((RANDOM_NUMBER ^ rand()) >> 16) & 0x7fff;
     for(int i = 0; i<9; i++) {
     	buttons[i]->invalidate();
@@ -80,8 +86,8 @@ void Screen1View::handleTickEvent()
 
 void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R) {
     output = input;
-
     int n = output.size();
+
     for (int i = n - 1; i > 0; --i) {
         int rand_index = R % (i + 1);
         TEXTS temp = output[i];

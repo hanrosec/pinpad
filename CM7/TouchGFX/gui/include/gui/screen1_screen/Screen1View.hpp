@@ -12,7 +12,10 @@
 #include <time.h>
 #include <string.h>
 #include <touchgfx/Unicode.hpp>
-//#include "usbd_cdc_if.h"
+#include <stdio.h>
+
+#include "usbd_cdc_if.h"
+#include "stm32h7xx_hal.h"
 #include "main.h"
 
 class Screen1View : public Screen1ViewBase
@@ -31,6 +34,8 @@ private:
     void shuffleButtons();
     ButtonWithLabel *buttons[9];
     int RANDOM_NUMBER;
+
+
 };
 
 void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R);
