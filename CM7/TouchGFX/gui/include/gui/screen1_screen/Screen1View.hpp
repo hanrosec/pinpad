@@ -12,7 +12,6 @@
 #include <time.h>
 #include <string.h>
 #include <touchgfx/Unicode.hpp>
-#include <stdio.h>
 
 #include "usbd_cdc_if.h"
 #include "stm32h7xx_hal.h"
@@ -38,11 +37,12 @@ private:
     touchgfx::Callback<Screen1View, const touchgfx::AbstractButton&> buttonCallback;
     void shuffleButtons();
     ButtonWithLabel *buttons[9];
-    int RANDOM_NUMBER;
+    uint RANDOM_NUMBER;
 
 
 };
 
-void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R);
+void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, uint R);
+int f(int a, int b);
 
 #endif // SCREEN1VIEW_HPP

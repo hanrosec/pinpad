@@ -7,7 +7,7 @@ Screen1View::Screen1View():
 	buttonCallback(this, &Screen1View::buttonCallbackHandler)
 {
 	srand(time(NULL));
-	RANDOM_NUMBER = rand();
+	RANDOM_NUMBER = rand() * HAL_GetTick();
 
     std::vector<TEXTS> number_list = {T_NINE, T_EIGHT, T_SEVEN, T_SIX, T_FIVE, T_FOUR, T_THREE, T_TWO, T_ONE};
     std::vector<TEXTS> shuffled_numbers;
@@ -66,13 +66,13 @@ void Screen1View::buttonCallbackHandler(const touchgfx::AbstractButton& src) {
 }
 
 void Screen1View::handleTickEvent() {
-	RANDOM_NUMBER = (unsigned int)((RANDOM_NUMBER ^ rand()) >> 16) & 0x7fff;
+	RANDOM_NUMBER += HAL_GetTick();
     for(int i = 0; i<9; i++) {
     	buttons[i]->invalidate();
     }
 }
 
-void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, int R) {
+void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, uint R) {
     output = input;
     int n = output.size();
 
