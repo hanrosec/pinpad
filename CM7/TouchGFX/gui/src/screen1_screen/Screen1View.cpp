@@ -8,18 +8,7 @@ Screen1View::Screen1View():
 {
 	srand(time(NULL));
 	RANDOM_NUMBER = rand();
-//	extern RNG_HandleTypeDef *hrng;
-//
-//
-//	if(HAL_RNG_GenerateRandomNumber_IT(hrng) != HAL_OK) {
-//		Error_Handler();
-//	}
-//	uint32_t TRANDOM_NUMBER = HAL_RNG_ReadLastRandomNumber(hrng);
 
-	const int buttonSpacing = 10;
-	const int startX = 0;
-	const int startY = 0;
-	const int buttonA = 100;
     std::vector<TEXTS> number_list = {T_NINE, T_EIGHT, T_SEVEN, T_SIX, T_FIVE, T_FOUR, T_THREE, T_TWO, T_ONE};
     std::vector<TEXTS> shuffled_numbers;
     shuffle(number_list, shuffled_numbers, RANDOM_NUMBER);
@@ -27,11 +16,11 @@ Screen1View::Screen1View():
     int counter = 0;
 	for (int row = 0; row < 3; row++) {
 		for (int col = 0; col < 3; col++) {
-			int buttonX = startX + col * (buttonA + buttonSpacing);
-			int buttonY = startY + row * (buttonA + buttonSpacing);
+			int button_x = START_X + col * (BUTTON_A + BUTTON_SPACING);
+			int button_y = START_Y + row * (BUTTON_A + BUTTON_SPACING);
 
 			ButtonWithLabel* button = new ButtonWithLabel();
-			button->setXY(buttonX, buttonY);
+			button->setXY(button_x, button_y);
 			button->setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_SMALL_FILL_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUNDED_SMALL_FILL_PRESSED_ID));
 			button->setLabelText(touchgfx::TypedText(shuffled_numbers[counter]));
 			button->setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
@@ -71,7 +60,6 @@ void Screen1View::buttonCallbackHandler(const touchgfx::AbstractButton& src) {
 
     const touchgfx::Unicode::UnicodeChar* unicode_text = label_text.getText();
     uint8_t button_pressed = (uint8_t)touchgfx::Unicode::atoi(unicode_text) + 48; // Wyrównanie do cyfr
-//    uint8_t *pbutton_pressed = ;
 
     HAL_UART_Transmit(&huart1, &button_pressed, sizeof(button_pressed), 0xffffff);
     shuffleButtons();

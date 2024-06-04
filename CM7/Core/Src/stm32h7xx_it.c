@@ -63,7 +63,6 @@ extern MDMA_HandleTypeDef hmdma_jpeg_infifo_th;
 extern MDMA_HandleTypeDef hmdma_jpeg_outfifo_th;
 extern JPEG_HandleTypeDef hjpeg;
 extern LTDC_HandleTypeDef hltdc;
-extern RNG_HandleTypeDef hrng;
 extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim6;
 
@@ -195,20 +194,6 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_IRQn 1 */
-}
-
-/**
-  * @brief This function handles HASH and RNG global interrupts.
-  */
-void HASH_RNG_IRQHandler(void)
-{
-  /* USER CODE BEGIN HASH_RNG_IRQn 0 */
-
-  /* USER CODE END HASH_RNG_IRQn 0 */
-  HAL_RNG_IRQHandler(&hrng);
-  /* USER CODE BEGIN HASH_RNG_IRQn 1 */
-
-  /* USER CODE END HASH_RNG_IRQn 1 */
 }
 
 /**

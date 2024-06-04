@@ -18,6 +18,11 @@
 #include "stm32h7xx_hal.h"
 #include "main.h"
 
+#define BUTTON_SPACING 10
+#define START_X 0
+#define START_Y 0
+#define BUTTON_A 100
+
 class Screen1View : public Screen1ViewBase
 {
 public:
