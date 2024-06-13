@@ -16,6 +16,7 @@
 #include "usbd_cdc_if.h"
 #include "stm32h7xx_hal.h"
 #include "main.h"
+#include "chacha.h"
 
 #define BUTTON_SPACING 10
 #define START_X 0
@@ -39,10 +40,15 @@ private:
     ButtonWithLabel *buttons[9];
     uint RANDOM_NUMBER;
 
+    uint32_t key[KEY_SIZE] = {
+        0x03020100, 0x07060504, 0x0b0a0908, 0x0f0e0d0c,
+        0x13121110, 0x17161514, 0x1b1a1918, 0x1f1e1d1c};
+    uint32_t *pkey = key;
+    uint32_t nonce[NONCE_SIZE] = {0x00000000, 0x4a000000, 0x00000000};
+    uint32_t *pnonce = nonce;
 
 };
 
 void shuffle(const std::vector<TEXTS>& input, std::vector<TEXTS>& output, uint R);
-int f(int a, int b);
 
 #endif // SCREEN1VIEW_HPP

@@ -57,4 +57,5 @@ Middlewares/FreeRTOS \
 Middlewares/LibJPEG \
 Middlewares/STM32_USB_Device_Library \
 Utilities \
+chacha \
 

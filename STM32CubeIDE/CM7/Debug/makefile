@@ -9,6 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include chacha/subdir.mk
 -include Utilities/subdir.mk
 -include Middlewares/STM32_USB_Device_Library/subdir.mk
 -include Middlewares/LibJPEG/subdir.mk
@@ -103,7 +104,7 @@ main-build: STM32H747I-DISCO_CM7.elf secondary-outputs
 
 # Tool invocations
 STM32H747I-DISCO_CM7.elf STM32H747I-DISCO_CM7.map: $(OBJS) $(USER_OBJS) D:\touchgfx_projects\pinpad\pinpad\STM32CubeIDE\CM7\STM32H747XIHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "STM32H747I-DISCO_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\touchgfx_projects\pinpad\pinpad\STM32CubeIDE\CM7\STM32H747XIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32H747I-DISCO_CM7.map" -Wl,--gc-sections -static -L../../../CM7/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+	arm-none-eabi-g++ -o "STM32H747I-DISCO_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"D:\touchgfx_projects\pinpad\pinpad\STM32CubeIDE\CM7\STM32H747XIHX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32H747I-DISCO_CM7.map" -Wl,--gc-sections -static -L../../../CM7/Middlewares/ST/touchgfx/lib/core/cortex_m7/gcc -L"D:\touchgfx_projects\pinpad\pinpad\STM32CubeIDE\CM7\chacha" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -155,3 +155,4 @@
 "./Middlewares/STM32_USB_Device_Library/usbd_ctlreq.o"
 "./Middlewares/STM32_USB_Device_Library/usbd_ioreq.o"
 "./Utilities/jpeg_utils.o"
+"./chacha/chacha.o"
