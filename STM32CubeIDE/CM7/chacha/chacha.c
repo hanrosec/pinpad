@@ -117,7 +117,3 @@ void encrypt(uint8_t *plaintext, size_t plaintext_len, uint32_t *key, uint32_t *
 void decrypt(uint8_t *ciphertext, size_t ciphertext_len, uint32_t *key, uint32_t *nonce, uint8_t *plaintext) {
     encrypt(ciphertext, ciphertext_len, key, nonce, plaintext);
 }
-
-void test(){
-	int a = 1;
-}

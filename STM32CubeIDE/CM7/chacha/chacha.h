@@ -4,6 +4,13 @@
  * https://en.wikipedia.org/wiki/Salsa20#ChaCha_variant
  * https://github.com/Ginurx/chacha20-c/blob/master/chacha20.c
  */
+#ifndef CHACHA_H
+#define CHACHA_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,3 +52,9 @@ void serialize(uint32_t *in, uint8_t *out);
 
 void encrypt(uint8_t *plaintext, size_t plaintext_len, uint32_t *key, uint32_t *nonce, uint8_t *ciphertext);
 void decrypt(uint8_t *ciphertext, size_t ciphertext_len, uint32_t *key, uint32_t *nonce, uint8_t *plaintext);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // CHACHA_H
